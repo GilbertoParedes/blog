@@ -25,7 +25,7 @@
                       <a href="basic_table.html#">{{ $user->name }}</a>
                     </td>
                     <td class="hidden-phone">{{ $user->email }}</td>
-                    <td><img href="{{ $user->avatar }}" ></td>
+                    <td><img src="{{ asset('storage/'.$user->avatar) }}" alt="" height="42" width="42"></td>
                     <td><span class="label label-info label-mini">{{ $user->status }}</span></td>
                     <td>
                       <a href="#" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>

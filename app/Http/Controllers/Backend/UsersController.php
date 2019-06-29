@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Cms\Users\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -48,11 +49,14 @@ class UsersController extends Controller
     {
         //dd($request->all());
         $file = $request->file('avatar')->store('avatars');
+        // dd($file);
         
         $this->userRepository->create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'avatar' => $file,
+            'status' => 'active'
             ]);
         return "regístro creado";
         return back();
