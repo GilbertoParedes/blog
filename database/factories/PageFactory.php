@@ -12,6 +12,7 @@ $factory->define(Page::class, function (Faker $faker) {
         'description' => $faker->randomHtml(2,3),
         'excerpt' => $faker->randomHtml(2,3),
         'slug' => $faker->slug,
+        'perman_link' => $faker->slug,
         'status' => 'active',
         'level' => $faker->numberBetween($min = 1, $max = 3),
         'type_id' => $faker->numberBetween($min = 1, $max = 4)

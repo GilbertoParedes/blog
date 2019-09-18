@@ -22,7 +22,8 @@
     <link href="{{ asset('css/admin/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/bootstrap-fileupload.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/to-do.css') }}" rel="stylesheet">
-
+    <script src="https://cdn.tiny.cloud/1/1m350ym5ohuycl1akj687sz5ialdnqzud6lfvqcyg8ys7jy3/tinymce/5/tinymce.min.js"></script>
+    <script src="{{ asset('js/admin/custom.js') }}"></script>
 </head>
 <body>
 

@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Cms\Pages\Repositories\PageRepositoryInterface;
+use App\Cms\Pages\Repositories\PageTypeRepositoryInterface;
 
 class PagesController extends Controller
 {
 
     protected $pageRepository;
+    protected $pageTypeRepository;
 
-    function __construct(PageRepositoryInterface $pageInterface)
+    function __construct(PageRepositoryInterface $pageInterface, PageTypeRepositoryInterface $pageTypeInterface)
     {
         $this->pageRepository = $pageInterface;
+        $this->pageTypeRepository = $pageTypeInterface;
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +37,9 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.create');
+        $pageTypes = $this->pageTypeRepository->all();
+        
+        return view('admin.pages.create', compact('pageTypes'));
     }
 
     /**
@@ -45,7 +50,8 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->pageRepository->create($request->all());
+        return redirect()->route('pages.index');
     }
 
     /**
@@ -68,6 +74,7 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = $this->pageRepository->findOrFail($id);
+        //dd($page->types);
         return view('admin.pages.edit', compact('page'));
     }
 
@@ -80,7 +87,9 @@ class PagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = $this->pageRepository->findOrFail($id);
+        $page->update($request->all());
+        return back();
     }
 
     /**

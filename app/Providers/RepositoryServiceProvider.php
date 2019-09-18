@@ -37,5 +37,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Cms\Pages\Repositories\PageRepositoryInterface',
             'App\Cms\Pages\Repositories\PageRepository'
         );
+
+        $this->app->bind(
+            'App\Cms\Pages\Repositories\PageTypeRepositoryInterface',
+            'App\Cms\Pages\Repositories\PageTypeRepository'
+        );
+        ;
     }
 }

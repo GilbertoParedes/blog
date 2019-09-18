@@ -20,6 +20,7 @@ class CreatePagesTable extends Migration
             $table->longText('description');
             $table->longText('excerpt');
             $table->string('slug');
+            $table->string('perman_link');
             $table->string('status');
             $table->smallInteger('level');
 
