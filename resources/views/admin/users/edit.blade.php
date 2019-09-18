@@ -3,30 +3,36 @@
 @section('content')
 <section id="main-content">
     <section class="wrapper">
-    <h3><i class="fa fa-angle-right"></i> Form Components</h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel">
-              <h4 class="mb"><i class="fa fa-angle-right"></i> Form Elements</h4>
-              <form class="form-horizontal style-form" method="post" action="{{ route('users.store') }}" enctype="multipart/form-data">
+              <h4 class="mb"><i class="fa fa-angle-right"></i> Editar Usuario: {{ $user->name }}</h4>
+              <form class="form-horizontal style-form" method="post" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                 @csrf
+                <input name="_method" type="hidden" value="PUT">
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" placeholder="nombre">
+                    <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}" placeholder="nombre">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="text" name="email" class="form-control" placeholder="gil@yourdomain.com">
+                    <input type="text" name="email" class="form-control" value="{{ old('email', $user->email) }}" placeholder="gil@yourdomain.com">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Password</label>
+                  <label class="col-sm-2 col-sm-2 control-label">Current Password</label>
                   <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" placeholder="Mayor a 8 caracteres">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">New Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" name="newPassword" class="form-control" placeholder="Mayor a 8 caracteres">
                   </div>
                 </div>
                 <div class="form-group">
@@ -44,7 +50,7 @@
                   <div class="col-md-9">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
                       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                        <img src="{{ old('avatar', $user->avatar) }}" alt="" width="200px" height="150px" />
                       </div>
                       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                       <div>

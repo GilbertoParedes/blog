@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-
+    <link href="{{ asset('css/app.css') }}">
     <!-- admin section styles -->
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
     <!-- Bootstrap core CSS -->
@@ -21,17 +21,19 @@
     <!-- Font Awesome -->
     <link href="{{ asset('css/admin/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/bootstrap-fileupload.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/to-do.css') }}" rel="stylesheet">
 
 </head>
 <body>
 
     <section id="container">
-
+      <div id="app">
         @include('admin.partials.header')
         @yield('content')
         @include('admin.partials.footer')
-    
+      </div>
     </section>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin/jquery.min.js') }}"></script>
 
     <script src="{{ asset('js/admin/bootstrap.min.js') }}"></script>
@@ -50,8 +52,22 @@
     <script src="{{ asset('js/admin/Chart.js') }}"></script>
     <script src="{{ asset('js/admin/jquery-ui-1.9.2.custom.min.js') }}"></script>
     <script src="{{ asset('js/admin/bootstrap-fileupload.js') }}"></script>
+    {{-- SCRIPT PARA LISTAR PÁGINAS --}}
+    <!-- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
+    <script src="{{ asset('js/admin/tasks.js') }}"></script>
 
-    <script type="text/javascript">
+    <script>
+    jQuery(document).ready(function() {
+      TaskList.initTaskWidget();
+    });
+
+    $(function() {
+      $("#sortable").sortable();
+      $("#sortable").disableSelection();
+    });
+  </script>
+
+    {{-- <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
         // (string | mandatory) the heading of the notification
@@ -70,7 +86,8 @@
 
       return false;
     });
-  </script>
+  </script> --}}
+  
   <script type="application/javascript">
     $(document).ready(function() {
       $("#date-popover").popover({

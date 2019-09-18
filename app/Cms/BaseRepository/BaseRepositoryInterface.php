@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 Interface BaseRepositoryInterface
 {
-    public function all();
-    public function create($params);
+    
 
 }

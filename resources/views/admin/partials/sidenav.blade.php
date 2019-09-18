@@ -26,6 +26,17 @@
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
+              <i class="fa fa-plus"></i>
+              <span>Páginas</span>
+              </a>
+            <ul class="sub">
+              <li><a href="{{ route('pages.index') }}">Todas las páginas</a></li>
+              <li><a href="buttons.html">Home</a></li>
+              <li><a href="buttons.html">blog</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
               <i class="fa fa-cogs"></i>
               <span>Components</span>
               </a>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Cms\Users\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -47,18 +48,18 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $file = $request->file('avatar')->store('avatars');
-        // dd($file);
+        $file = $request->file('avatar');
+        $fileName = $file->getClientOriginalName();
+        $path = '/files/avatars/'.$fileName;
+        $file->move('files/avatars/', $fileName);
         
         $this->userRepository->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'avatar' => $file,
-            'status' => 'active'
+            'avatar' => $path,
+            'status' => $request->status
             ]);
-        return "regístro creado";
         return back();
     }
 
@@ -70,7 +71,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -81,7 +82,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->userRepository->findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -93,7 +95,40 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $this->userRepository->findOrFail($id);
+
+        $validatedData = $request->validate([
+            'password' => 'required',
+            'new_password' => 'confirmed|min:8|different:password',
+        ]);
+
+        if (Hash::check($request->password, $user->password)) {
+
+            $file = $request->file('avatar');
+            $fileName = $file->getClientOriginalName();
+            $path = '/files/avatars/'.$fileName;
+            $file->move('files/avatars/', $fileName);
+            
+            // $request->user()->fill([
+            $user->fill([
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => $path,
+                'status' => $request->status,
+                'password' => Hash::make($request->newPassword)
+             ])->save();
+
+            $request->session()->flash('success', 'Password changed');
+            return redirect()->route('users.index');
+            
+        } else {
+            $request->session()->flash('error', 'Password does not match');
+            return redirect()->route('users.index');
+        } 
+
+        
+        // return redirect('users')->with("success", "regístro actualizado!");
+        
     }
 
     /**
@@ -104,6 +139,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->userRepository->findOrFail($id);
+        $user->delete();
+        return redirect('users')->with('delete', 'archivo eliminado!!');
     }
 }

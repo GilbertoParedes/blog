@@ -12,10 +12,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     protected $model;
 
-    public function __construct(User $user)
+    public function __construct()
     {
-        parent::__construct($user);
-        $this->model = $user;
+        parent::__construct(User::class);
     }
 
 }
