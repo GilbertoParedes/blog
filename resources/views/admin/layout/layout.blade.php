@@ -22,6 +22,7 @@
     <link href="{{ asset('css/admin/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/bootstrap-fileupload.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/to-do.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin/dropzone.css') }}" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/1m350ym5ohuycl1akj687sz5ialdnqzud6lfvqcyg8ys7jy3/tinymce/5/tinymce.min.js"></script>
     <script src="{{ asset('js/admin/custom.js') }}"></script>
 </head>
@@ -34,6 +35,7 @@
         @include('admin.partials.footer')
       </div>
     </section>
+    
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin/jquery.min.js') }}"></script>
 
@@ -56,6 +58,9 @@
     {{-- SCRIPT PARA LISTAR PÁGINAS --}}
     <!-- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
     <script src="{{ asset('js/admin/tasks.js') }}"></script>
+    <script src="{{ asset('js/admin/dropzone.js') }}"></script>
+    @yield('scripts')
+    
 
     <script>
     jQuery(document).ready(function() {
