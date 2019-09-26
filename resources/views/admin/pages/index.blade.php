@@ -3,102 +3,10 @@
 @section('content')
 <section id="main-content">
     <section class="wrapper">
-        <!-- <h1>Páginas</!-->
-         <!-- COMPLEX TO DO LIST -->
          <div class="row mt">
           <div class="col-md-12">
-            <section class="task-panel tasks-widget">
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <h5><i class="fa fa-tasks"></i> Páginas - Agregar Página <a href="{{ route('pages.create') }}"><button class="btn btn-success btn-xs"><i class=" fa fa-plus"></i></button></a></h5>
-                </div>
-                <br>
-              </div>
-              <div class="panel-body">
-                <div class="task-content">
-                  <ul class="task-list">
-                  @foreach($pages as $page)
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">{{ $page->name }}</span>
-                        <!-- <span class="badge bg-theme">Done</span> -->
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
-                          <a href="{{ route('pages.edit', $page->id) }}"><button class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
-                          <a href="{{ route('pages.destroy', $page->id) }}"><button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
-                        </div>
-                      </div>
-                    </li>
-                    @endforeach
-                    <!-- <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">Extensive collection of plugins</span>
-                        <span class="badge bg-warning">Cool</span>
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">Free updates always, no extra fees.</span>
-                        <span class="badge bg-success">2 Days</span>
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">More features coming soon</span>
-                        <span class="badge bg-info">Tomorrow</span>
-                        <div class="pull-right hidden-phone">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="task-checkbox">
-                        <input type="checkbox" class="list-child" value="" />
-                      </div>
-                      <div class="task-title">
-                        <span class="task-title-sp">Hey, seriously, you should buy this Dashboard</span>
-                        <span class="badge bg-important">Now</span>
-                        <div class="pull-right">
-                          <button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-                          <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                        </div>
-                      </div>
-                    </li> -->
-                  </ul>
-                </div>
-                <div class=" add-task-row">
-                  <a class="btn btn-success btn-sm pull-left" href="todo_list.html#">Add New Tasks</a>
-                  <a class="btn btn-default btn-sm pull-right" href="todo_list.html#">See All Tasks</a>
-                </div>
-              </div>
-            </section>
+            <page-component :page="{{ $pages }}"></page-component>
           </div>
-          <!-- /col-md-12-->
         </div>
     </section>
 </section>

@@ -4,5 +4,3 @@
         <form action="assets/dropzone/upload.php" class="dropzone" id="my-awesome-dropzone"></form>
     </div>
 </div>
-      
-  
